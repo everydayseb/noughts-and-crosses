@@ -10,18 +10,61 @@ class Board
   def update(move)
     cell = move.cell_number
     player = move.player
+    moved = false
     
     case cell
-    when 1 then board[2][0] = player
-    when 2 then board[2][1] = player
-    when 3 then board[2][2] = player
-    when 4 then board[1][0] = player
-    when 5 then board[1][1] = player
-    when 6 then board[1][2] = player
-    when 7 then board[0][0] = player
-    when 8 then board[0][1] = player
-    when 9 then board[0][2] = player
+    when 1
+      unless board[2][0].is_a?(Player)
+        board[2][0] = player
+        moved = true
+      end
+    when 2 
+      unless board[2][1].is_a?(Player) 
+        board[2][1] = player
+        moved = true
+      end
+    when 3 
+      unless board[2][2].is_a?(Player)
+        board[2][2] = player
+        moved = true
+      end
+    when 4 
+      unless board[1][0].is_a?(Player)
+        board[1][0] = player
+        moved = true
+      end
+    when 5 
+      unless board[1][1].is_a?(Player)
+      board[1][1] = player
+        moved = true
+      end
+    when 6 
+      unless board[1][2].is_a?(Player)
+        board[1][2] = player
+        moved = true
+      end
+    when 7 
+      unless board[0][0].is_a?(Player)
+        board[0][0] = player
+        moved = true
+      end
+    when 8 
+      unless board[0][1].is_a?(Player)
+        board[0][1] = player
+        moved = true
+      end
+    when 9 
+      unless board[0][2].is_a?(Player)
+        board[0][2] = player
+        moved = true
+      end
     end
+
+    moved
+  end
+
+  def full?
+    board.flatten.all?(Player)
   end
 
   def check_rows

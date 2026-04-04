@@ -19,9 +19,19 @@ class Game
       puts "It is #{player_to_move}'s turn."
       print "Choose a square: "
       input = gets.chomp
-      break if input.upcase == 'Q'
       move = Move.new(input, player_to_move)
-      board.update(move)
+      until board.update(move)
+        puts 'Invalid choice.'
+        print "Choose a square: "
+        input = gets.chomp
+        move = Move.new(input, player_to_move)
+      end
+      if board.full?
+        system("clear")
+        puts board
+        puts "The game is a draw."
+        break
+      end
       winner = board.winner
       if winner
         system("clear")
