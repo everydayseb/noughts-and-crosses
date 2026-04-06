@@ -23,8 +23,6 @@ class Board
   end
 
   def cell(cell_number)
-    # returns position hash?
-    # rewrite update method removing case
     row, column = nil
 
     case cell_number
