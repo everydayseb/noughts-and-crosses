@@ -8,59 +8,41 @@ class Board
   end
 
   def update(move)
-    cell = move.cell_number
+    square_to_update = cell(move.cell_number)
+    row = square_to_update[:row]
+    column = square_to_update[:column]
     player = move.player
     moved = false
-    
-    case cell
-    when 1
-      unless board[2][0].is_a?(Player)
-        board[2][0] = player
-        moved = true
-      end
-    when 2 
-      unless board[2][1].is_a?(Player) 
-        board[2][1] = player
-        moved = true
-      end
-    when 3 
-      unless board[2][2].is_a?(Player)
-        board[2][2] = player
-        moved = true
-      end
-    when 4 
-      unless board[1][0].is_a?(Player)
-        board[1][0] = player
-        moved = true
-      end
-    when 5 
-      unless board[1][1].is_a?(Player)
-      board[1][1] = player
-        moved = true
-      end
-    when 6 
-      unless board[1][2].is_a?(Player)
-        board[1][2] = player
-        moved = true
-      end
-    when 7 
-      unless board[0][0].is_a?(Player)
-        board[0][0] = player
-        moved = true
-      end
-    when 8 
-      unless board[0][1].is_a?(Player)
-        board[0][1] = player
-        moved = true
-      end
-    when 9 
-      unless board[0][2].is_a?(Player)
-        board[0][2] = player
-        moved = true
-      end
+
+    unless board[row][column].is_a?(Player)
+      board[row][column] = player
+      moved = true
     end
 
     moved
+  end
+
+  def cell(cell_number)
+    # returns position hash?
+    # rewrite update method removing case
+    row, column = nil
+
+    case cell_number
+    when 1 then row, column = 2, 0
+    when 2 then row, column = 2, 1
+    when 3 then row, column = 2, 2
+    when 4 then row, column = 1, 0
+    when 5 then row, column = 1, 1
+    when 6 then row, column = 1, 2
+    when 7 then row, column = 0, 0
+    when 8 then row, column = 0, 1
+    when 9 then row, column = 0, 2
+    end
+
+    {
+      row: row,
+      column: column
+    }
   end
 
   def full?
