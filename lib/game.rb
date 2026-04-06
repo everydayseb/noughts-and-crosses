@@ -13,7 +13,7 @@ class Game
   end
 
   def run
-    while true
+    loop do
       system('clear')
       puts board
       puts "It is #{player_to_move}'s turn."
@@ -44,7 +44,6 @@ class Game
       end
 
       switch_player
-
     end
   end
 end
