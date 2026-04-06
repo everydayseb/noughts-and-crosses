@@ -3,7 +3,7 @@ class Board
     @board = [
       [7, 8, 9],
       [4, 5, 6],
-      [1, 2, 3],
+      [1, 2, 3]
     ]
   end
 
@@ -26,15 +26,24 @@ class Board
     row, column = nil
 
     case cell_number
-    when 1 then row, column = 2, 0
-    when 2 then row, column = 2, 1
-    when 3 then row, column = 2, 2
-    when 4 then row, column = 1, 0
-    when 5 then row, column = 1, 1
-    when 6 then row, column = 1, 2
-    when 7 then row, column = 0, 0
-    when 8 then row, column = 0, 1
-    when 9 then row, column = 0, 2
+    when 1 then row = 2
+                column = 0
+    when 2 then row = 2
+                column = 1
+    when 3 then row = 2
+                column = 2
+    when 4 then row = 1
+                column = 0
+    when 5 then row = 1
+                column = 1
+    when 6 then row = 1
+                column = 2
+    when 7 then row = 0
+                column = 0
+    when 8 then row = 0
+                column = 1
+    when 9 then row = 0
+                column = 2
     end
 
     {
@@ -58,7 +67,7 @@ class Board
 
   def check_columns
     winner = nil
-    
+
     if board[0][0] == board[1][0] && board[0][0] == board[2][0]
       winner = board[0][0]
     elsif board[0][1] == board[1][1] && board[0][1] == board[2][1]
@@ -87,11 +96,11 @@ class Board
   end
 
   def to_s
-    " #{board[0][0]} | #{board[0][1]} | #{board[0][2]}\n" +
-    " - + - + -\n" +
-    " #{board[1][0]} | #{board[1][1]} | #{board[1][2]}\n" +
-    " - + - + -\n" +
-    " #{board[2][0]} | #{board[2][1]} | #{board[2][2]} "
+    " #{board[0][0]} | #{board[0][1]} | #{board[0][2]}\n " \
+      "- + - + -\n " \
+      "#{board[1][0]} | #{board[1][1]} | #{board[1][2]}\n " \
+      "- + - + -\n " \
+      "#{board[2][0]} | #{board[2][1]} | #{board[2][2]} "
   end
 
   private

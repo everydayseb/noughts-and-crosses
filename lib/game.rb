@@ -14,32 +14,37 @@ class Game
 
   def run
     while true
-      system("clear")
+      system('clear')
       puts board
       puts "It is #{player_to_move}'s turn."
-      print "Choose a square: "
+      print 'Choose a square: '
       input = gets.chomp
       move = Move.new(input, player_to_move)
+
       until board.update(move)
         puts 'Invalid choice.'
-        print "Choose a square: "
+        print 'Choose a square: '
         input = gets.chomp
         move = Move.new(input, player_to_move)
       end
+
       if board.full?
-        system("clear")
+        system('clear')
         puts board
-        puts "The game is a draw."
+        puts 'The game is a draw.'
         break
       end
+
       winner = board.winner
       if winner
-        system("clear")
+        system('clear')
         puts board
         puts "#{winner} won the game!"
         break
       end
+
       switch_player
+
     end
   end
 end
